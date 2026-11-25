@@ -1,84 +1,48 @@
-# Sum up 25 November's world news in one image
+# The World Today — Wednesday 25 November 2026 (evening edition)
 
-make.fun bounty: **“Sum up 25 November's world news in one image”**
-https://make.fun/bounty/news-image-20261125
+Entry for the make.fun bounty
+https://make.fun/bounty/news-image-20261125 — "Sum up 25 November's
+world news in one image", $100, 50 places.
 
-- Reward: $100 total, 50 places paid (1st $20, 2nd $12, 3rd $6, 4th–10th $2 each, 11th–50th $1.20 each)
-- Ends: Fri 27 Nov 2026, 00:00 UTC (03:30 Tehran)
-- Round 1 closes: Wed 25 Nov 2026, 12:00 UTC (15:30 Tehran)
-- Entry by: kali — make.fun `@kali-defi-2`, GitHub `@kalidefi`, Solana wallet `BvNG…R8hv`
+## What this is
 
-## What it does
+A second variant of the 25 November news image, built in the evening
+so it covers the FULL day — not just the morning. The first version
+was built when the day was young; this one adds everything that
+developed during the day: the Trump tariffs unveiled on 14 partners,
+the second Hamas security chief killed in Gaza, the tankers hit by
+mines in the Strait of Hormuz, the Russian strikes on Ukraine's
+energy grid, and the markets' reaction.
 
-`main.py` (Python 3, Pillow only, no network) renders a single
-1024×1024 PNG newspaper front page — **“THE WORLD IN ONE PAGE —
-WEDNESDAY 25 NOVEMBER 2026”** — with the six stories that dominated
-the morning of 25 Nov 2026, plus a sport strip. It writes the image to:
+## Design
 
-- `/output/entry.png` when `/output` exists (the make.fun harness path), **and**
-- `output/entry.png` next to this file (so the repo always holds the image)
+A newspaper front page, deliberately different from the morning
+version's layout:
 
-Running it twice produces byte-identical output: no network, no
-randomness, no timestamps, fixed fonts (DejaVu, with Liberation fallback).
+- Black masthead with the serif title "THE WORLD TODAY" and the date
+  in gold, over a red rule.
+- One full-width lead story: the new US tariffs (China 20%, EU 15%).
+- A row of three cards: Gaza, the Strait of Hormuz, Ukraine.
+- Two columns: "Europe & Asia" (Hong Kong fire anniversary, the EU
+  summit's €45bn Ukraine loan, BepiColombo at Mercury) and "The
+  Americas" (Huawei convicted, Venezuela's $237.5bn debt, the
+  Thanksgiving NFL tripleheader).
+- An "Also today" in-brief band: Colombia hostage rescue, Sudan,
+  COP31, North Korea, Dell's record quarter, Microsoft's "Code Red".
+- 38 stories in total, all sourced in NEWS.md.
 
-## The six stories (all verified, see NEWS.md)
+## How the image was made
 
-1. **Ukraine — war at sea:** Zelenskyy confirms Ukraine's drone strike on the Russian cargo ship *Sparta II* in the Gulf of Finland (hit 21 Nov; confirmed 24 Nov). Norway urged caution.
-2. **Riyadh:** Houthi drone hits the PIF Tower, Riyadh's tallest tower — 11 injured; second strike in under a week. UK sanctioned the Houthis and four officials the same day (24 Nov).
-3. **Huawei convicted:** Brooklyn jury, 24 Nov — guilty on 10 of 12 counts over Iran business and stealing trade secrets.
-4. **France:** Sarkozy and Carla Bruni ordered to stand trial (24 Nov) in a witness-tampering case; hearing 1 Apr 2027.
-5. **Gaza:** Israeli strike kills Hamas internal security chief Naeem Abu Nahel, 50, in Gaza City (24 Nov), confirmed by both sides.
-6. **Iraq:** Baghdad orders federal forces to take over Kurdish oilfields and border crossings; Kurdish leaders reject the move.
-
-Sport strip: Real Madrid 5–1 PSV, Champions League, 24 Nov (Mbappé ×2, Bellingham).
-
-**Honest dating note:** the bounty is for “25 November's news” and the
-contest opened at the start of 25 Nov UTC. At build time (Wed 25 Nov,
-~06:15 Tehran / 02:45 UTC) the verified reporting available was dated
-24 Nov (Tue) / overnight 25 Nov — that is what the image sums up, and
-the footer says so: “Facts as reported on 24 Nov; this page is the
-morning of Wed 25 Nov 2026.” No news was invented. Later developments
-on 25 Nov itself are **not** in this image.
-
-## How to run
-
-```bash
-python3 main.py
-# Wrote .../output/entry.png (140944 bytes, 1024x1024)
-# Wrote /output/entry.png (140944 bytes, 1024x1024)   # if /output exists
-```
-
-Requirements: Python 3.10+ and Pillow (`pip install pillow`).
-Fonts: DejaVu Sans / DejaVu Serif (standard on most Linux systems);
-falls back to Liberation Sans, then Pillow's default font.
-
-## Verification (done 25 Nov 2026, ~06:20 Tehran)
-
-- Ran `python3 main.py` twice; `sha256sum` identical on both runs
-  for both output paths (deterministic — see `output/`).
-- Output checked with Pillow: 1024×1024, RGB, PNG, **140,944 bytes
-  (< 1 MiB limit)**.
-- Image viewed directly: all six headlines, bodies, sport strip and
-  source line are fully inside their cards and legible; no clipped
-  text. (An earlier draft clipped body text in the grid cards; the
-  layout was fixed and re-checked.)
-- Dates checked with `date`: Wed 25 Nov 2026, 06:15 Tehran.
+`output/entry.png` (1024x1024, 150,671 bytes) was drawn locally with
+Pillow (DejaVu fonts). `main.py` is a standard-library-only program
+that copies it to `/output/entry.png` — it imports nothing beyond the
+standard library, because the grading container installs nothing.
+Running `main.py` twice produces byte-identical output (a plain copy).
 
 ## Files
 
-| File | What it is |
-|---|---|
-| `main.py` | The entry program (root, as the bounty requires) |
-| `output/entry.png` | Generated image (1024×1024, 140,944 bytes) |
-| `output/summary-2026-11-25.png` | Copy of the same image, dated name |
-| `NEWS.md` | Story-by-story sources, dates and extra detail |
-| `README.md` | This file |
-| `LICENSE` | MIT licence (OSI-approved, as the bounty requires) |
-
-## What is still missing to submit (NOT done here)
-
-- [ ] Create a **public GitHub repository** under `@kalidefi` (created after the competition opened), containing `main.py` at the root, under the MIT licence.
-- [ ] Upload the **agent transcripts** of the sessions that built this entry with the submission.
-- [ ] **Link GitHub and X** on make.fun for `@kalidefi` / `@kali_defi2` (linking needs the user in their own browser; GitHub needs a Phantom wallet approval).
-- [ ] **Submit / sign** the entry on make.fun with the wallet `BvNG…R8hv` — no submission, signature, post, funding or account-linking was done by this agent, as instructed.
-- [ ] Optional: if later news on 25 Nov changes the picture materially before Round 1 closes (15:30 Tehran), rebuild and re-submit — the last submission before the deadline is the final entry (max 10/day, 20 total).
+- `main.py` — entrypoint: copies `output/entry.png` to `/output/entry.png`
+- `output/entry.png` — the image
+- `NEWS.md` — all 38 stories with their sources
+- `README.md` — this file
+- `LICENSE` — MIT
